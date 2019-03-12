@@ -4,13 +4,12 @@
     <th>Vrsta</th>
     <th>Ime</th>
     <th>Datum</th>
+   </tr>
+  <tr  v-for="(animal) in animals" :key="animal"> 
+     <td> {{animal.specie}}</td>
+    <td> {{animal.name}}</td>
+     <td> {{animal.birthday ? animal.birthday :'nepoznato'}}</td>
   </tr>
-  <tr>
-    <td v-for="(animal) in animals" :key="animal">
-      {{animal}} 
-    </td>
-  </tr>
-    </tr>
 </table>
 </template>
 
@@ -18,14 +17,14 @@
 export default {
   data () {
        return{
-        animals: {
-          specie:"Tiger", name:"Nensy", birthday:"20.03.2010",
-          specie:"Bear", name:"Dundi", birthday:"23.082015",
-          specie:"Seagle", name:"Lord", birthday:"30.05.2013",
-          specie:"Donky", name:"Baba", birthday:"15.04.2012",
-          specie:"Octopod", name:"Sisy", birthday:"10.02.2018",
+        animals: [
+          {specie:"Tiger", name:"Nensy", birthday:"20.03.2010"},
+          {specie:"Bear", name:"Dundi", birthday:"23.082015"},
+          {specie:"Seagle", name:"Lord", birthday:"30.05.2013"},
+          {specie:"Donky", name:"Baba", birthday:""},
+          {specie:"Octopod", name:"Sisy", birthday:"10.02.2018"},
 
-        }
+        ]
        
        }
    },
