@@ -1,11 +1,24 @@
 <template>
+<div >
+<form @submit.prevent="addItem()">
+  <div>
+  <label>Vrsta:</label>
+   <input type="text" v-model="animal.specie"  />
+    <label>Ime:</label>
+  <input type="text" v-model="animal.name" />
+   <label>Rodjendan:</label>
+    <input type="text" v-model="animal.birthday">
+  </div>
+
+    <button type="submit">add</button>
+</form>
   <table style="width:100%">
   <tr>
     <th>Vrsta</th>
     <th>Ime</th>
     <th>Datum</th>
    </tr>
-  <tr  v-for="(animal,index) in animals" :key="animal"> 
+  <tr  v-for="(animal,index) in animals" :key="index"> 
      <td> {{animal.specie}}  {{ index }}</td>
     <td> {{animal.name}}   {{ index }}</td>
      <td> {{animal.birthday ? animal.birthday :'nepoznato'}}   {{ index }}</td>
@@ -13,6 +26,7 @@
      <button @click="moveToTop(index)">MoveToTop</button>
   </tr>
 </table>
+</div>
 </template>
 
 <script>
@@ -26,12 +40,20 @@ export default {
           {specie:"Donky", name:"Baba", birthday:""},
           {specie:"Octopod", name:"Sisy", birthday:"10.02.2018"},
 
-        ]
+        ],
+
+        animal:{
+        name: '',
+        specie: '',
+        birthday: ''
+        }
+  
        
        }
    },
 
     methods: {
+
 
      removeItem(index) {
       if (this.deleteWithSplice) {
@@ -48,9 +70,16 @@ export default {
         ...this.animals
       ]
     },
+
+    addItem() {
+      this.animals.push({...this.animal})
+    }
+  },
+    
+    
    }
 
-}
+
 </script>
 
 <style>
