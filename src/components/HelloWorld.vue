@@ -10,6 +10,7 @@
     <td> {{animal.name}}   {{ index }}</td>
      <td> {{animal.birthday ? animal.birthday :'nepoznato'}}   {{ index }}</td>
     <button @click="removeItem(index)">Delete</button>
+     <button @click="moveToTop(index)">MoveToTop</button>
   </tr>
 </table>
 </template>
@@ -38,6 +39,14 @@ export default {
       } else {
         this.$delete(this.animals, index);
       }
+    },
+    moveToTop(index) {
+      const animal = this.animals[index];
+      this.animals.splice(index,1);
+      this.animals = [
+        animal,
+        ...this.animals
+      ]
     },
    }
 
