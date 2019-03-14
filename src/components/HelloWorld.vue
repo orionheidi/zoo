@@ -22,10 +22,10 @@
       <th>Datum</th>
       </tr>
     <tr v-for="(animal,index) in animals" :key="index"> 
-      <td> {{animal.specie}}  {{ index }}</td>
-      <td> {{animal.name}}   {{ index }}</td>
-      <td> {{animal.birthday ? animal.birthday :'nepoznato'}}   {{ index }}</td>
-      <td> {{animal.sector}}   {{ index }}</td>
+      <td> {{animal.specie}}</td>
+      <td> {{animal.name}}</td>
+      <td> {{animal.birthday ? animal.birthday :'nepoznato'}}</td>
+      <td> {{animal.sector}} </td>
         <button @click="removeItem(index)">Delete</button>
         <button @click="moveToTop(index)">MoveToTop</button>
     </tr>
@@ -89,12 +89,9 @@ export default {
   },
 
   methods: {
+
     removeItem(index) {
-      if (this.deleteWithSplice) {
-        this.animals.splice(index, 1);
-      } else {
         this.$delete(this.animals, index);
-      }
     },
     moveToTop(index) {
       const animal = this.animals[index];
@@ -108,16 +105,16 @@ export default {
 
     vidiZivotinju(sector) {
 
-      // var animalsInSector = animals.filter(animal=>{
-      //   return animal.sector === sector;
-      //   });
-        var a = '';
-        for(var i=0;i<this.animals.length;i++){
-          if(this.animals[i].sector === sector){
-            a += this.animals[i].name;
-          }
-        }
-        alert(a);
+      let animalSector = this.animals.filter(animal => {return animal.sector === sector;});
+      alert(JSON.stringify(animalSector));
+
+      // var a = '';
+      // for(var i=0;i<this.animals.length;i++){
+      //   if(this.animals[i].sector === sector){
+      //     a += this.animals[i].name;
+      //   }
+      // }
+      // alert(a);
  
     }
   }
